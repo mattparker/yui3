@@ -3,52 +3,89 @@ YUI.add('color-harmony-tests', function(Y) {
     var testBasic = new Y.Test.Case({
             name: "Color Convertion Tests",
 
-            'complementary of "blue"': function() {
+           'complementary of "blue"': function() {
                 var c = Y.Color.getComplementary('blue');
 
                 Y.Assert.areSame(2, c.length);
+                addOutput('complementary of "blue"', "blue", c);
+                Y.Assert.areSame("#0000ff", c[0]);
+                Y.Assert.areSame("#ffaa00", c[1]);
+
             },
 
             'complementary of "#ff7700"': function() {
                 var c = Y.Color.getComplementary('#ff7700');
 
                 Y.Assert.areSame(2, c.length);
+                addOutput('complementary of "#ff7700"', "#ff7700", c);
+                Y.Assert.areSame("#ff7700", c[0]);
+                Y.Assert.areSame("#0099ff", c[1]);             
             },
 
             'split complementary of "blue"': function() {
                 var c = Y.Color.getSplit('blue');
 
                 Y.Assert.areSame(3, c.length, 'length is greater than 1');
+                addOutput('split complementary of "blue"', "blue", c);
+                Y.Assert.areSame("#0000ff", c[0]);
+                Y.Assert.areSame("#ffff00", c[1]); 
+                Y.Assert.areSame("#ff5500", c[2]);
+                
             },
 
-            'split complementary of "blue" with 45 degree offsets': function() {
+            'split complementary of "blue" with 45 degree offset': function() {
                 var c = Y.Color.getSplit('blue', 45);
 
                 Y.Assert.areSame(3, c.length, 'length is greater than 1');
+                addOutput('split complementary of "blue" with 45 degree offset', "blue", c);
+                Y.Assert.areSame("#0000ff", c[0]);
+                Y.Assert.areSame("#d4ff00", c[1]); 
+                Y.Assert.areSame("#ff2b00", c[2]);                
             },
 
             'analogous of "red"': function() {
                 var c = Y.Color.getAnalogous('red');
 
                 Y.Assert.areSame(5, c.length, 'length is greater than 1');
+                addOutput('analogous of "red"', 'red', c);
+                Y.Assert.areSame("#ff0000", c[0]);
+                Y.Assert.areSame("#ff1a00", c[1]); 
+                Y.Assert.areSame("#ff3700", c[2]);   
+                Y.Assert.areSame("#ff002b", c[3]);
+                Y.Assert.areSame("#ff0055", c[4]); 
+
             },
 
             'triad of "#ff7700"': function() {
                 var c = Y.Color.getTriad('#ff7700');
 
                 Y.Assert.areSame(3, c.length, 'length is greater than 1');
+                addOutput('triad of "#ff7700"', '#ff7700', c);
+                Y.Assert.areSame("#ff7700", c[0]);
+                Y.Assert.areSame("#33ff00", c[1]); 
+                Y.Assert.areSame("#b300ff", c[2]);                
             },
 
             'tetrad of "#ff00ff"': function() {
                 var c = Y.Color.getTetrad('#ff00ff');
 
                 Y.Assert.areSame(4, c.length, 'length is greater than 1');
+                addOutput('tetrad of "#ff00ff"', '#ff00ff', c);
+                Y.Assert.areSame("#ff00ff", c[0]);
+                Y.Assert.areSame("#ff0000", c[1]); 
+                Y.Assert.areSame("#aaff00", c[2]);   
+                Y.Assert.areSame("#00ff00", c[3]);                
             },
 
             'square of "#ff00ff"': function() {
                 var c = Y.Color.getSquare('#ff00ff');
 
                 Y.Assert.areSame(4, c.length, 'length is greater than 1');
+                addOutput('square of "#ff00ff"', '#ff00ff', c);
+                Y.Assert.areSame("#ff00ff", c[0]);
+                Y.Assert.areSame("#ff5500", c[1]); 
+                Y.Assert.areSame("#aaff00", c[2]);   
+                Y.Assert.areSame("#00ffff", c[3]);                   
             },
 
             'monochrome of "#ff7700" one time': function() {
@@ -67,6 +104,11 @@ YUI.add('color-harmony-tests', function(Y) {
                 var c = Y.Color.getMonochrome('#ff7700', 5);
 
                 Y.Assert.areSame(5, c.length, 'length is greater than 1');
+                Y.Assert.areSame("#000000", c[0]);
+                Y.Assert.areSame("#803c00", c[1]); 
+                Y.Assert.areSame("#ff7700", c[2]);   
+                Y.Assert.areSame("#ffbb80", c[3]);                   
+                Y.Assert.areSame("#ffffff", c[4]);                
             },
 
             'similar of "#ff00ff" default offset': function() {
