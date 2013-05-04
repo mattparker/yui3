@@ -3,7 +3,7 @@ YUI.add('color-tests', function(Y) {
     var Assert = Y.Assert,
         Types = Y.Color.TYPES,
         testBasic = new Y.Test.Case({
-            name: "Color Convertion Tests",
+            name: "Color Base Convertion Tests",
 
             'test conversion': function() {
                 Assert.areEqual('#ffffff', Y.Color.convert('fff', Types.HEX), 'Hex to Hex');
@@ -27,6 +27,15 @@ YUI.add('color-tests', function(Y) {
                 Assert.areEqual('rgb(0, 255, 0)', Y.Color.convert('lime', Types.RGB), 'Keyword to RGB');
 
                 Assert.areEqual('rgba(0, 255, 0, 1)', Y.Color.convert('lime', Types.RGBA), 'Keyword to RGBa');
+            },
+
+            'test conversion with various strings': function () {
+                Assert.areEqual('#ffffff', Y.Color.convert('fff', 'hex'));
+                Assert.areEqual('#ffffff', Y.Color.convert('fff', 'HEX'));
+
+                // invalid conversion types
+                Assert.areEqual('fff', Y.Color.convert('fff', 'foo'));
+                Assert.areEqual('FFF', Y.Color.convert('FFF', 'foo'));
             },
 
             'test original Y.DOM color conversons': function() {
@@ -123,7 +132,7 @@ YUI.add('color-tests', function(Y) {
 
     });
 
-    var suite = new Y.Test.Suite("Color");
+    var suite = new Y.Test.Suite("Color Base");
     suite.add(testBasic);
 
     Y.Test.Runner.add(suite);
